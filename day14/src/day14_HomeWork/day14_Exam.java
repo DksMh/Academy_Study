@@ -6,6 +6,7 @@ import java.util.Objects;
 import java.util.Scanner;
 import java.util.Vector;
 
+
 class Student{
 	private String name;
 	private String depart;
