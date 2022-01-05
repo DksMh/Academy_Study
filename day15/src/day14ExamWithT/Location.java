@@ -1,4 +1,4 @@
-package day14_HomeWorkWithT;
+package day14ExamWithT;
 
 public class Location {
 	private String city;

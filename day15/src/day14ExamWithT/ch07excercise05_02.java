@@ -1,4 +1,4 @@
-package day14_HomeWorkWithT;
+package day14ExamWithT;
 
 import java.util.ArrayList;
 import java.util.Collections;
