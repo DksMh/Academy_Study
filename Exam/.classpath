@@ -5,7 +5,6 @@
 			<attribute name="module" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry excluding="day16ch08/json/" kind="src" path="src"/>
-	<classpathentry kind="lib" path="F:/json-20211205.jar"/>
+	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

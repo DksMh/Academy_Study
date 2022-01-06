@@ -18,9 +18,6 @@ import java.io.OutputStream;
 import java.util.Scanner;
 
 public class Ch08Ex02 {
-	
-	
-	
 	// 객체를 파일에 저장하고 객체로 읽어온다.
 	// 자바는 객체 지향 언어이므로 객체 저장이 더 효과적이다.
 	// 객체 직렬화 - 객체를 저장하고 읽을 때 필요한 개념.
@@ -106,7 +103,7 @@ public class Ch08Ex02 {
 		BufferedReader br = new BufferedReader(fr); // 강으로 합침
 
 		String s = null;
-		while ((s = br.readLine()) != null) {
+		while ((s = br.readLine()) != null) {  // 파일 내 문자열을 1줄씩 읽기 while
 			System.out.println(s);
 		}
 	}

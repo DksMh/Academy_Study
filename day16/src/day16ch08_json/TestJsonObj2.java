@@ -1,4 +1,4 @@
-package day16ch08.json;
+package day16ch08_json;
 
 import java.io.FileWriter;
 import java.io.IOException;
@@ -36,7 +36,8 @@ public class TestJsonObj2 {
 		rootObj.put("members",jArr);
 		
 		// 파일에 기록
-		FileWriter writer = new FileWriter("members.json");
+		// RealPath에 저장
+		FileWriter writer = new FileWriter("E:\\java_work\\day16\\src\\day16ch08_json\\members.json");
 		writer.write(rootObj.toString(2));
 		writer.close();
 		

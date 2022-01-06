@@ -1,4 +1,4 @@
-package day16ch08.json;
+package day16ch08_json;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
