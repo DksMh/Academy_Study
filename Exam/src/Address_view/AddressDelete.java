@@ -15,9 +15,11 @@ public class AddressDelete extends AddressView{
 		char yn = scan.next().charAt(0);
 		if(yn == 'N' || yn == 'n') {
 			R.addressVo = null;
-		}else {
 			System.out.println("삭제가 취소되었습니다.");
+		}else if(yn == 'Y' || yn == 'y') {
+			System.out.println("삭제 되었습니다.");
 		}
+		else {}
 		
 	}
 }

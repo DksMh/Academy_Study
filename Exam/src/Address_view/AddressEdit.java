@@ -12,19 +12,19 @@ public class AddressEdit extends AddressView {
 		}
 		System.out.println(R.addressVo);
 		System.out.println("수정 항목을 선택하세요.");
-		System.out.println("이름을 수정하시겠습니까?(Y/N)");
+		System.out.print("이름을 수정하시겠습니까?(Y/N)");
 		char yn = scan.next().charAt(0);
 		if(yn == 'Y' || yn == 'y') {
 			System.out.print("새 이름 >> ");
 			R.addressVo.setName(scan.next());
 		}
-		System.out.println("전화번호를 수정하시겠습니까?(Y/N)");
+		System.out.print("전화번호를 수정하시겠습니까?(Y/N)");
 		yn = scan.next().charAt(0);
 		if(yn == 'Y' || yn == 'y') {
 			System.out.print("새 번호 >> ");
 			R.addressVo.setTel(scan.next());
 		}
-		System.out.println("주소를 수정하시겠습니까?(Y/N)");
+		System.out.print("주소를 수정하시겠습니까?(Y/N)");
 		yn = scan.next().charAt(0);
 		if(yn == 'Y' || yn == 'y') {
 			System.out.print("새 주소 >> ");

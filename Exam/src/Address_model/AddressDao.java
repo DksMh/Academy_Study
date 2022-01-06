@@ -21,8 +21,8 @@ public class AddressDao {
 	// 입력
 	public void insert(AddressVo vo) {
 		for (int i = 0; i < adrlist.size(); i++) {
-			adrlist.add(vo);
 		}
+		adrlist.add(vo);
 		vo.setNo(no++);
 	}
 	// 전체 출력
