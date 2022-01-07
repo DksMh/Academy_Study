@@ -10,18 +10,12 @@ import Address_model.AddressVo;
 
 public class AddressDao {
 	// 여기서 저장 만들어야 함
-	private static final int MAX = 100;
-	private static final AddressVo[] adrArr = new AddressVo[MAX];
-	public static int top = 0;
-	public static int sequenceNo = 1;
 	public static ArrayList<AddressVo> adrlist = new ArrayList<AddressVo>();
 	public static int no = 1;
 	
 
 	// 입력
 	public void insert(AddressVo vo) {
-		for (int i = 0; i < adrlist.size(); i++) {
-		}
 		adrlist.add(vo);
 		vo.setNo(no++);
 	}
