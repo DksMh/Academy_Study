@@ -75,8 +75,8 @@ public class AddressVo implements Externalizable {
 		return Objects.hash(name);
 	}
 	
-	// equals를 쓰는 이유는 이걸로만 비교하면 되니까~
-	// adrlist.get(i).equals(vo);
+	// equals를 Override한 이유는 이걸로만 비교하면 되니까~
+	// adrlist.get(i).equals(vo); == adrlist.get(i).equals(vo.get(i).getName());
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)

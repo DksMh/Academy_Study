@@ -46,7 +46,6 @@ public class AddressController {
 			}
 			break;
 		case 6 : System.out.println("프로그램 종료"); System.exit(0); break;
-		case 7 : System.out.println("저장프로그램 만드는 중"); 
 		default : System.out.println("해당 기능이 없습니다.");
 		}
 		// 재귀 호출

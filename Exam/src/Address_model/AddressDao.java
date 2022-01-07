@@ -27,7 +27,7 @@ public class AddressDao {
 	public static FileWriter fw;
 	// fileload 저장된 파일이 있을 수 있음
 	// dat파일이 거기에 있는 것을 나는 가지고 오고 싶다는 것을 말하는 것.
-	// 없으면 새로 만들 거지만(save() ) 있으면 가지고 오라는 의미
+	// 없으면 새로 만들 거지만( save() ) 있으면 가지고 오라는 의미
 	{
 		try {
 			fileload();
@@ -67,7 +67,7 @@ public class AddressDao {
 		ois = new ObjectInputStream(fis);
 		ArrayList<AddressVo> list2 = (ArrayList<AddressVo>) ois.readObject();
 		adrlist.addAll(list2); // adrlist <- list2 넘김
-
+		no = list2.get(list2.size()-1).getNo()+1; // 마지막 번호
 	}
 
 	// 입력
