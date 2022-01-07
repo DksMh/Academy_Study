@@ -11,11 +11,9 @@ public class InsertView extends AddressView {
 		System.out.print("전화번호 입력 >> ");
 		String tel = scan.next();
 		System.out.print("주소 입력 >> ");
-		String adr = scan.next();
+		String adr = scan2.nextLine();
 
 		R.addressVo = new AddressVo(0, name, tel, adr);
-		scan.nextLine();
 		System.out.println("입력 완료");
-		// 작업 완료후 자동으로 Controller로 이동.
 	}
 }

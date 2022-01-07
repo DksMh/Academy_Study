@@ -1,13 +1,16 @@
 package Address_contoller;
 
+import java.io.IOException;
+
 import Address.R;
 import Address.ViewContainer;
 import Address_model.AddressDao;
+import Address_model.AddressVo;
 
 public class AddressController {
 	private ViewContainer vc = new ViewContainer();
 	private AddressDao dao = new AddressDao();
-	public void action() {
+	public void action() throws ClassNotFoundException, IOException {
 //		System.out.println(">>>> SaramController 실행 ...");
 		if(R.no == 0) { // no = 0면 선택 안됨
 			vc.run(R.menuView);
@@ -47,6 +50,7 @@ public class AddressController {
 		default : System.out.println("해당 기능이 없습니다.");
 		}
 		// 재귀 호출
+		dao.save();
 		R.no = 0;
 		action();
 		
