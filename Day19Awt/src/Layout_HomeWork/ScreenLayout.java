@@ -51,7 +51,7 @@ public class ScreenLayout extends Frame {
 	Button btn2 = new Button("INSERT");
 	Button btn3 = new Button("DELETE");
 	Button btn4 = new Button("SEARCH");
-	Button btn5 = new Button("CANCLE");
+	Button btn5 = new Button("CANCEL");
 
 	public ScreenLayout() {
 		ScreenLayout02();

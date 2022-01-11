@@ -18,9 +18,7 @@ import org.comstudy21.guiex.myframe.Myframe;
 // 보기(V) 편집(E) 도움말(H) -> 메뉴
 // text 보여주는 곳
 // MC MR MS M+ M-
-// ← CE C ± √ 
-// 왼쪽 오른쪽 
-// ¹∕ⅹ 
+// ← CE C ± √ 등등의 버튼
 public class ScreenLayout2 extends Myframe{
 	// 전체
 	Panel all = new Panel(new GridLayout(4, 1));

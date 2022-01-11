@@ -25,8 +25,9 @@ public class Layoutex01 extends Myframe {
 
 	public Layoutex01() {
 		super("Layout manager 연습", 640, 480);
-		flowLayoutEx();
-//		gridLayoutEx();
+//		BorderLayoutEx();
+//		flowLayoutEx();
+		gridLayoutEx();
 //		gridBagLayoutEx();
 	}
 
