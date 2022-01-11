@@ -1,4 +1,4 @@
-package member.controller;
+package member.model;
 
 import java.util.Objects;
 
@@ -54,7 +54,7 @@ public class MemberDTO {
 	@Override
 	public String toString() {
 		// return idx + "\t" + name + "\t" + email + "\t" + phone;
-		return String.format("%4d%10s%20s%20s\n", idx, name, email, phone);
+		return String.format("%4d%10s%20s%20s", idx, name, email, phone);
 	}
 
 	@Override
@@ -80,7 +80,7 @@ public class MemberDTO {
 	}
 
 	@Override
-	protected Object clone() {
+	protected Object clone() { // DAO의 모든 참조를 DTO로 넘겨주고 DAO 참조를 끊으려고 만들었다(정보를 다 넘겼기 때문에)
 		try {
 			return new MemberDTO(idx, name, email, phone);
 		} catch (Exception e) {

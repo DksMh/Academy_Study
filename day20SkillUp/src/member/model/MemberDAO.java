@@ -1,4 +1,4 @@
-package member.controller;
+package member.model;
 
 import java.util.List;
 import java.util.ArrayList;
@@ -7,12 +7,22 @@ import java.util.Vector;
 
 public class MemberDAO {
 	private static final Vector<MemberDTO> memList = new Vector<MemberDTO>();
+	private static int sequence = 1;
+	static {
+		memList.add(new MemberDTO(sequence++, "홍길동", "hong@a.com", "010-1111-1111"));
+		memList.add(new MemberDTO(sequence++, "이순신", "lee@a.com", "010-2222-2222"));
+		memList.add(new MemberDTO(sequence++, "일지매", "il@a.com", "010-3333-3333"));
+		memList.add(new MemberDTO(sequence++, "이순신", "il2@a.com", "010-3232-3232"));
+	}
 
 	// 목록
 	public List<MemberDTO> selectAll() { // 다넘겨줌
 		List<MemberDTO> list = new ArrayList<MemberDTO>();
-		Collections.copy(list, memList);
+//		Collections.copy(list, memList);
 		// Vector<MemberDTO> memList 복사 받아서 List<MemberDTO> list 넣어줌
+		for(MemberDTO mem : memList) {
+			list.add((MemberDTO) mem.clone());
+		}
 		return list;
 	}
 
@@ -61,6 +71,12 @@ public class MemberDAO {
 	// 저장
 	public boolean filesave(List<MemberDTO> list) {
 		return false;
+	}
+	
+	// 입력
+	public void insert(MemberDTO memberDTO) {
+		memberDTO.setIdx(sequence++);
+		memList.add(memberDTO);
 	}
 
 }
