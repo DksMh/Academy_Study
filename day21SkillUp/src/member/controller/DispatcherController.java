@@ -11,8 +11,8 @@ public class DispatcherController {
 //		view = new InputController().hadleRequest();
 //		view = new MenuController().hadleRequest();
 		if(no == INPUT) {
-			mainActivity.setContentView(input);
-			ctrl = ctrlMapper.get(INPUT);
+			mainActivity.setContentView(input); // -> onCreate()에서 메뉴를 다 0으로 만들어줬다. 그래서 0이다 지금
+			ctrl = ctrlMapper.get(INPUT); // 그러니까 INPUT = 2로 넣어준 것이다.
 			ctrl.hadleRequest();
 		} else {
 			ctrl = ctrlMapper.get(no);

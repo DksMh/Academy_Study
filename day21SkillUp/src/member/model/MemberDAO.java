@@ -1,12 +1,18 @@
 package member.model;
 
-import java.util.List;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.util.ArrayList;
-import java.util.Collections;
+import java.util.List;
 import java.util.Vector;
 
 public class MemberDAO {
-	private static final Vector<MemberDTO> memList = new Vector<MemberDTO>();
+	private static Vector<MemberDTO> memList = new Vector<MemberDTO>();
 	private static int sequence = 1;
 	static {
 		memList.add(new MemberDTO(sequence++, "홍길동", "hong@a.com", "010-1111-1111"));
@@ -17,6 +23,7 @@ public class MemberDAO {
 
 	// 목록
 	public List<MemberDTO> selectAll() { // 다넘겨줌
+		memList = (Vector<MemberDTO>) fileload();
 		List<MemberDTO> list = new ArrayList<MemberDTO>();
 //		Collections.copy(list, memList);
 		// Vector<MemberDTO> memList 복사 받아서 List<MemberDTO> list 넣어줌
@@ -62,14 +69,57 @@ public class MemberDAO {
 			return null; // 업데이트 못한다고 알려주는 거
 		}
 	}
-
+	File file = new File("member.dat");
+	
 	// 불러오기
 	public List<MemberDTO> fileload() {
-		return null;
+		List<MemberDTO> list = null;
+		FileInputStream fis = null;
+		ObjectInputStream ois = null;
+		
+		try {
+			list = (List<MemberDTO>)ois.readObject();
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}finally {
+			if (ois != null)
+				try {
+					ois.close();
+					fis.close();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+		}
+		memList = (Vector<MemberDTO>) list;
+		return list;
 	}
 
 	// 저장
 	public boolean filesave(List<MemberDTO> list) {
+		// memList 저장하기
+		FileWriter fw = null;
+		FileOutputStream fos = null;
+		ObjectOutputStream oos = null;
+		boolean b = false;
+		try {
+			fos= new FileOutputStream(file);
+			oos = new ObjectOutputStream(fos);
+			oos.writeObject(memList);
+			System.out.println("파일 저장 완료");
+			b = true;
+		} catch (IOException e) {
+			System.out.println("파일 쓰기 오류");
+		}finally {
+				try {
+					if(oos != null) oos.close();
+					if(fos != null) fos.close();
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+		}
 		return false;
 	}
 	
@@ -77,6 +127,8 @@ public class MemberDAO {
 	public void insert(MemberDTO memberDTO) {
 		memberDTO.setIdx(sequence++);
 		memList.add(memberDTO);
+		
+		filesave(memList);
 	}
 
 }
