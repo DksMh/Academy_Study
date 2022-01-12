@@ -27,7 +27,7 @@ public class MemberDAO {
 		List<MemberDTO> list = new ArrayList<MemberDTO>();
 //		Collections.copy(list, memList);
 		// Vector<MemberDTO> memList 복사 받아서 List<MemberDTO> list 넣어줌
-		for(MemberDTO mem : memList) {
+		for (MemberDTO mem : memList) {
 			list.add((MemberDTO) mem.clone());
 		}
 		return list;
@@ -69,21 +69,23 @@ public class MemberDAO {
 			return null; // 업데이트 못한다고 알려주는 거
 		}
 	}
+
 	File file = new File("member.dat");
-	
+
 	// 불러오기
 	public List<MemberDTO> fileload() {
 		List<MemberDTO> list = null;
 		FileInputStream fis = null;
 		ObjectInputStream ois = null;
-		
 		try {
-			list = (List<MemberDTO>)ois.readObject();
+			fis = new FileInputStream(file);
+			ois = new ObjectInputStream(fis);
+			list = (List<MemberDTO>) ois.readObject();
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 		} catch (IOException e) {
 			e.printStackTrace();
-		}finally {
+		} finally {
 			if (ois != null)
 				try {
 					ois.close();
@@ -104,31 +106,36 @@ public class MemberDAO {
 		ObjectOutputStream oos = null;
 		boolean b = false;
 		try {
-			fos= new FileOutputStream(file);
+			fos = new FileOutputStream(file);
 			oos = new ObjectOutputStream(fos);
 			oos.writeObject(memList);
-			System.out.println("파일 저장 완료");
 			b = true;
 		} catch (IOException e) {
-			System.out.println("파일 쓰기 오류");
-		}finally {
-				try {
-					if(oos != null) oos.close();
-					if(fos != null) fos.close();
-				} catch (IOException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
+			
+		} finally {
+			try {
+				if (oos != null)
+					oos.close();
+				if (fos != null)
+					fos.close();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
 		return false;
 	}
-	
+
 	// 입력
 	public void insert(MemberDTO memberDTO) {
 		memberDTO.setIdx(sequence++);
 		memList.add(memberDTO);
-		
-		filesave(memList);
+		if (filesave(memList)) {
+			System.out.println("파일 저장 완료");
+
+		} else {
+			System.out.println("파일 쓰기 오류");
+		}
 	}
 
 }
