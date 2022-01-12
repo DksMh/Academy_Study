@@ -33,7 +33,8 @@ public class JTableEx01 extends JFrame {
 	private void mkTbl() {
 		colNames = new Object[] { "idx", "name", "phone" };
 		rowData = new Object[][] { { 1, "kim", "1111-1111" }, { 2, "lee", "2222-2222" }, { 3, "pack", "3333-3333" },
-				{ 4, "kang", "4444-4444" }, { 5, "hong", "5555-5555" } };
+				{ 4, "kang", "4444-4444" }, { 5, "hong", "5555-5555" } 
+		};
 
 		tableModel = new DefaultTableModel(rowData, colNames); // 수정이 용이하기 위해서
 		table = new JTable(tableModel);
@@ -41,9 +42,9 @@ public class JTableEx01 extends JFrame {
 		scrollPane = new JScrollPane(table);
 		contentPane.add(scrollPane);
 
-		//// ---------------------- 내용 변경 --> 수정테스트
-		tableModel.setDataVector(null, colNames); // -> 테이블만 남고 지워짐
-		tableModel.addRow(new Object[] { 3, "ccc", "7777" }); // -> 지우고 이것만 넣어줌
+		//// ---------------------- 내용 변경 ---> 수정 테스트
+		tableModel.setDataVector(null, colNames);
+		tableModel.addRow(new Object[] { 3, "ccc", "7777" });
 		tableModel.addRow(new Object[] { 2, "bbb", "8888" });
 		tableModel.addRow(new Object[] { 1, "aaa", "9999" });
 	}
