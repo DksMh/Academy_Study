@@ -36,5 +36,29 @@ public class SaramDao {
 		}
 		return null;
 	}
-	
+	public Vector modify(SaramDto saramDto) {	
+		Vector vector = new Vector();		
+		int index = 0;
+		for(int i = 0; i<saramList.size(); i++) {
+			if(saramDto.getIdx() == saramList.get(i).getIdx()) {
+				index = i;
+				saramList.set(index, saramDto);
+			}
+		}
+		vector = saramList.get(index).toVector();
+		return vector;
+	}
+
+	public Vector delete(SaramDto saramDto) {	
+		Vector vector = new Vector();		
+		int index = 0;
+		for(int i = 0; i<saramList.size(); i++) {
+			if(saramDto.getIdx() == saramList.get(i).getIdx()) {
+				index = i;
+				saramList.remove(index);
+			}
+		}
+		vector = saramList.get(index).toVector();
+		return vector;
+	}
 }

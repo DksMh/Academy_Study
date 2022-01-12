@@ -1,8 +1,22 @@
 package org.comstudy21.ex06;
 
 //R에 있는 모든 것을 쓰겠다.
-import static org.comstudy21.ex06.R.*;
-import org.comstudy21.ex06.SaramDao;
+import static org.comstudy21.ex06.R.allBtn;
+import static org.comstudy21.ex06.R.columnNames;
+import static org.comstudy21.ex06.R.dao;
+import static org.comstudy21.ex06.R.data;
+import static org.comstudy21.ex06.R.deleteBtn;
+import static org.comstudy21.ex06.R.finshBtn;
+import static org.comstudy21.ex06.R.inputBtn;
+import static org.comstudy21.ex06.R.modifyBtn;
+import static org.comstudy21.ex06.R.scrollPane;
+import static org.comstudy21.ex06.R.searchBtn;
+import static org.comstudy21.ex06.R.table;
+import static org.comstudy21.ex06.R.tbModel;
+import static org.comstudy21.ex06.R.txtFld1;
+import static org.comstudy21.ex06.R.txtFld2;
+import static org.comstudy21.ex06.R.txtFld3;
+import static org.comstudy21.ex06.R.txtFld4;
 
 import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
@@ -62,6 +76,14 @@ public class TestJTable extends MyJframe {
 		tbModel.addRow(new Object[] { 5, "bbb", "bbb@naver.com", "010-5555-5555" });
 	}
 
+	private void displayList() {
+		tbModel.setDataVector(null, columnNames);
+		Vector<Vector> saramList = dao.selectAll();
+		for (Vector vector : saramList) {
+			tbModel.addRow(vector);
+		}
+	}
+
 	protected void actionEvent() {
 		// 테이블 이벤트 핸들러 추가
 		// tbModel에 데이터를 누르면 옆에 textfield로 들어가게 만들기
@@ -94,9 +116,15 @@ public class TestJTable extends MyJframe {
 				txtFld4.setText(phone);
 
 			}
-			public void mouseExited(MouseEvent e) {}
-			public void mouseEntered(MouseEvent e) {}
-			public void mouseClicked(MouseEvent e) {}
+
+			public void mouseExited(MouseEvent e) {
+			}
+
+			public void mouseEntered(MouseEvent e) {
+			}
+
+			public void mouseClicked(MouseEvent e) {
+			}
 
 		});
 		// 버튼 이벤트 핸들러 추가
@@ -104,6 +132,7 @@ public class TestJTable extends MyJframe {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				System.out.println(">> allBtn 클릭");
+				displayList();
 			}
 		});
 		inputBtn.addActionListener(new ActionListener() {
@@ -130,13 +159,6 @@ public class TestJTable extends MyJframe {
 //				tbModel.addRow(new Object[] { sequence++, name, email, phone });
 			}
 
-			private void displayList() {
-				tbModel.setDataVector(null, columnNames);
-				Vector<Vector> saramList = dao.selectAll();
-				for (Vector vector : saramList) {
-					tbModel.addRow(vector);
-				}
-			}
 		});
 		searchBtn.addActionListener(new ActionListener() {
 			@Override
@@ -144,21 +166,37 @@ public class TestJTable extends MyJframe {
 				System.out.println(">> searchBtn 클릭");
 				String name = txtFld2.getText();
 				Vector vector = dao.search(new SaramDto(0, name, null, null));
-				tbModel.setDataVector(null, columnNames); 
+				tbModel.setDataVector(null, columnNames);
 				tbModel.addRow(vector);
-				
+
 			}
 		});
 		modifyBtn.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				System.out.println(">> modifyBtn 클릭");
+				System.out.println(">>> modifyBtn 클릭!");
+				int idx = Integer.parseInt(txtFld1.getText());
+				String name = txtFld2.getText();
+				String email = txtFld3.getText();
+				String phone = txtFld4.getText();
+				Vector vector = dao.modify(new SaramDto(idx, name, email, phone));
+//				tbModel.setDataVector(null, columnNames);
+//				tbModel.addRow(vector);
+				displayList();
 			}
 		});
 		deleteBtn.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				System.out.println(">> deleteBtn 클릭");
+				System.out.println(">>> deleteBtn 클릭!");
+				int idx = Integer.parseInt(txtFld1.getText());
+				String name = txtFld2.getText();
+				String email = txtFld3.getText();
+				String phone = txtFld4.getText();
+				Vector vector = dao.delete(new SaramDto(idx, name, email, phone));
+//				tbModel.setDataVector(null, columnNames);
+//				tbModel.addRow(vector);
+				displayList();
 			}
 		});
 		finshBtn.addActionListener(new ActionListener() {
