@@ -10,10 +10,10 @@ public class DispatcherController {
 	public static void run() {
 //		view = new InputController().hadleRequest();
 //		view = new MenuController().hadleRequest();
-		if (no == INPUT) {
+		if(no == INPUT) {
 			mainActivity.setContentView(input);
-			ctrl = ctrlMapper.get(no);
-			view = ctrl.hadleRequest();
+			ctrl = ctrlMapper.get(INPUT);
+			ctrl.hadleRequest();
 		} else {
 			ctrl = ctrlMapper.get(no);
 			view = ctrl.hadleRequest();
