@@ -21,11 +21,14 @@ import static org.comstudy21.ex06.R.txtFld4;
 import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.Vector;
 
 import javax.swing.JOptionPane;
+import javax.swing.JRadioButton;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
@@ -55,25 +58,26 @@ public class TestJTable extends MyJframe {
 	@Override
 	protected void displayLayer() {
 		mkTableData();
-		contentPan = super.getContentPane();
+		contentPan = getContentPane();
 
 		contentPan.add(BorderLayout.WEST, new LeftPane());
 		contentPan.add(BorderLayout.SOUTH, new BottomPane());
 
 		tbModel = new DefaultTableModel(data, columnNames);
 		table = new JTable(tbModel);
+
 		scrollPane = new JScrollPane(table);
 		contentPan.add(scrollPane);
 //		table = new JTable(tbModel);
 //		scrollPane = new JScrollPane(table);
 //		contentPan.add(scrollPane);
-
+		
 	}
-
+	
 	private void addRowDataTest() {
-		tbModel.setDataVector(null, columnNames); // -> 테이블만 남고 지워짐 / mapping했다는 것임
-		tbModel.addRow(new Object[] { 4, "aaa", "aaa@naver.com", "010-4444-4444" }); // -> 지우고 이것만 넣어줌
-		tbModel.addRow(new Object[] { 5, "bbb", "bbb@naver.com", "010-5555-5555" });
+//		tbModel.setDataVector(null, columnNames); // -> 테이블만 남고 지워짐 / mapping했다는 것임
+//		tbModel.addRow(new Object[] { 4, "aaa", "aaa@naver.com", "010-4444-4444" }); // -> 지우고 이것만 넣어줌
+//		tbModel.addRow(new Object[] { 5, "bbb", "bbb@naver.com", "010-5555-5555" });
 	}
 
 	private void displayList() {
@@ -81,6 +85,7 @@ public class TestJTable extends MyJframe {
 		Vector<Vector> saramList = dao.selectAll();
 		for (Vector vector : saramList) {
 			tbModel.addRow(vector);
+
 		}
 	}
 
@@ -128,6 +133,8 @@ public class TestJTable extends MyJframe {
 
 		});
 		// 버튼 이벤트 핸들러 추가
+		allBtn.setBorderPainted(false);
+		allBtn.setContentAreaFilled(false);
 		allBtn.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -163,16 +170,23 @@ public class TestJTable extends MyJframe {
 		searchBtn.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				System.out.println(">> searchBtn 클릭");
+//				System.out.println(">>> searchBtn 클릭!");
+//				String name = txtFld2.getText();
+//				Vector vector = dao.search(new SaramDto(0, name, null, null));
+//				tbModel.setDataVector(null, columnNames);
+//				tbModel.addRow(vector);
+				
 				String name = txtFld2.getText();
-				Vector vector = dao.search(new SaramDto(0, name, null, null));
+				Vector<Vector> saramList = dao.selectList(new SaramDto(0, name, null, null));
 				tbModel.setDataVector(null, columnNames);
-				tbModel.addRow(vector);
+				for (Vector vector : saramList) {
+					tbModel.addRow(vector);
 
+				}
+				
 			}
 		});
 		modifyBtn.addActionListener(new ActionListener() {
-			@Override
 			public void actionPerformed(ActionEvent e) {
 				System.out.println(">>> modifyBtn 클릭!");
 				int idx = Integer.parseInt(txtFld1.getText());
@@ -183,6 +197,7 @@ public class TestJTable extends MyJframe {
 //				tbModel.setDataVector(null, columnNames);
 //				tbModel.addRow(vector);
 				displayList();
+
 			}
 		});
 		deleteBtn.addActionListener(new ActionListener() {

@@ -22,8 +22,8 @@ public class MemberDAO {
 	}
 
 	// 목록
-	public List<MemberDTO> selectAll() { // 다넘겨줌
-		memList = (Vector<MemberDTO>) fileload();
+	public List<MemberDTO> selectAll() {
+		memList = (Vector<MemberDTO>)fileLoad();
 		List<MemberDTO> list = new ArrayList<MemberDTO>();
 //		Collections.copy(list, memList);
 		// Vector<MemberDTO> memList 복사 받아서 List<MemberDTO> list 넣어줌
@@ -73,10 +73,11 @@ public class MemberDAO {
 	File file = new File("member.dat");
 
 	// 불러오기
-	public List<MemberDTO> fileload() {
+	public List<MemberDTO> fileLoad() {
 		List<MemberDTO> list = null;
 		FileInputStream fis = null;
 		ObjectInputStream ois = null;
+
 		try {
 			fis = new FileInputStream(file);
 			ois = new ObjectInputStream(fis);
@@ -91,16 +92,16 @@ public class MemberDAO {
 					ois.close();
 					fis.close();
 				} catch (IOException e) {
-					e.printStackTrace();
 				}
 		}
+
 		memList = (Vector<MemberDTO>) list;
 		return list;
 	}
 
 	// 저장
-	public boolean filesave(List<MemberDTO> list) {
-		// memList 저장하기
+	public boolean fileSave(List<MemberDTO> list) {
+		// memList저장하기
 		FileWriter fw = null;
 		FileOutputStream fos = null;
 		ObjectOutputStream oos = null;
@@ -111,7 +112,7 @@ public class MemberDAO {
 			oos.writeObject(memList);
 			b = true;
 		} catch (IOException e) {
-			
+
 		} finally {
 			try {
 				if (oos != null)
@@ -119,22 +120,21 @@ public class MemberDAO {
 				if (fos != null)
 					fos.close();
 			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
 			}
 		}
-		return false;
+
+		return b;
 	}
 
 	// 입력
 	public void insert(MemberDTO memberDTO) {
 		memberDTO.setIdx(sequence++);
 		memList.add(memberDTO);
-		if (filesave(memList)) {
-			System.out.println("파일 저장 완료");
 
+		if (fileSave(memList)) {
+			System.out.println(">>> 파일 저장 완료!");
 		} else {
-			System.out.println("파일 쓰기 오류");
+			System.out.println(">>> 파일 쓰기 오류!");
 		}
 	}
 

@@ -6,7 +6,7 @@ import java.io.ObjectInput;
 import java.io.ObjectOutput;
 import java.util.Objects;
 
-public class MemberDTO implements Externalizable{
+public class MemberDTO implements Externalizable {
 	private int idx;
 	private String name;
 	private String email;
@@ -99,15 +99,13 @@ public class MemberDTO implements Externalizable{
 		out.writeObject(name);
 		out.writeObject(email);
 		out.writeObject(phone);
-		
 	}
 
 	@Override
 	public void readExternal(ObjectInput in) throws IOException, ClassNotFoundException {
-		idx = (Integer)in.readObject();
-		name = (String)in.readObject();
-		email = (String)in.readObject();
-		phone = (String)in.readObject();
-		
+		idx = (Integer) in.readObject();
+		name = (String) in.readObject();
+		email = (String) in.readObject();
+		phone = (String) in.readObject();
 	}
 }

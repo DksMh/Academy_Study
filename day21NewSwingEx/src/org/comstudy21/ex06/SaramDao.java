@@ -19,6 +19,16 @@ public class SaramDao {
 		}
 		return vector;
 	}
+	
+	public Vector selectList(SaramDto saramDto) {
+		Vector vector = new Vector();
+		for (int i = 0; i < saramList.size(); i++) {
+			if(saramDto.getName().equals(saramList.get(i).getName())) {				
+				vector.add(saramList.get(i).toVector()); // toVector -> 데이터를 Vector로 넘겨주는 거 만듬
+			}
+		}
+		return vector;
+	}
 
 	public void insert(SaramDto saramDto) {
 		if (saramDto != null) {
@@ -36,6 +46,8 @@ public class SaramDao {
 		}
 		return null;
 	}
+		
+	
 	public Vector modify(SaramDto saramDto) {	
 		Vector vector = new Vector();		
 		int index = 0;
