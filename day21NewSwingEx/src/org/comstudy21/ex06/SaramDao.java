@@ -6,9 +6,9 @@ public class SaramDao {
 	// view 에 있는 것을 일관성을 위해 여기로 옮김
 	private static Vector<SaramDto> saramList = new Vector<SaramDto>();
 	static {
-		saramList.add(new SaramDto(1, "kim", "kim@aa.com", "010-1111-1111"));
-		saramList.add(new SaramDto(2, "lee", "lee@aa.com", "010-2222-2222"));
-		saramList.add(new SaramDto(3, "park", "park@aa.com", "010-3333-3333"));
+		saramList.add(new SaramDto(1, "kim", "kim@aa.com", "010-1111-1111","회원"));
+		saramList.add(new SaramDto(2, "lee", "lee@aa.com", "010-2222-2222","비회원"));
+		saramList.add(new SaramDto(3, "park", "park@aa.com", "010-3333-3333","회원"));
 	}
 	public static int sequence = 4;
 

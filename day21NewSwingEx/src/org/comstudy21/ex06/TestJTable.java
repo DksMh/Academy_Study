@@ -46,6 +46,7 @@ public class TestJTable extends MyJframe {
 		columnNames.add("USER");
 		columnNames.add("EMAIL");
 		columnNames.add("PHONE");
+		columnNames.add("MEMBER");
 
 		// Object[][] 배열을 대체하는 코드
 		data = dao.selectAll();
@@ -160,7 +161,7 @@ public class TestJTable extends MyJframe {
 
 				// TableModel 에 반영해주기
 				// dao에 저장 후
-				dao.insert(new SaramDto(0, name, email, phone));
+				dao.insert(new SaramDto(0, name, email, phone, member));
 				// list를 다시 그려준다.
 				displayList();
 //				tbModel.addRow(new Object[] { sequence++, name, email, phone });

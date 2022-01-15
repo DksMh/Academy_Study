@@ -9,16 +9,18 @@ public class SaramDto {
 	private String name;
 	private String email;
 	private String phone;
+	private String member;
 
 	public SaramDto() {
-		this(0, "", "", "");
+		this(0, "", "", "","");
 	}
 
-	public SaramDto(int idx, String name, String email, String phone) {
+	public SaramDto(int idx, String name, String email, String phone,String member) {
 		this.idx = idx;
 		this.name = name;
 		this.email = email;
 		this.phone = phone;
+		this.member = member;
 	}
 
 	public int getIdx() {
@@ -53,9 +55,17 @@ public class SaramDto {
 		this.phone = phone;
 	}
 
+	public String getMember() {
+		return member;
+	}
+
+	public void setMember(String member) {
+		this.member = member;
+	}
+
 	@Override
 	public String toString() {
-		return "SaramDto [" + idx + ", " + name + ", " + email + ", " + phone + "]";
+		return "SaramDto [" + idx + ", " + name + ", " + email + ", " + phone +  member +"]";
 	}
 
 	@Override
@@ -81,6 +91,7 @@ public class SaramDto {
 		vector.add(name);
 		vector.add(email);
 		vector.add(phone);
+		vector.add(member);
 		return vector;
 	}
 }
