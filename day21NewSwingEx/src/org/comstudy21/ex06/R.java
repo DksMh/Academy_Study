@@ -32,8 +32,8 @@ public abstract class R {
 
 	// 추가 라디오 버튼
 	public static final ButtonGroup rbbox = new ButtonGroup();
-	public static JRadioButton rb01 = new JRadioButton("회원", true);
-	public static JRadioButton rb02 = new JRadioButton("비회원", false);
+	public static JRadioButton rb01 = new JRadioButton("회원", true); 
+	public static JRadioButton rb02 = new JRadioButton("비회원");
 
 	// 추가 체크 박스 버튼
 	public static final JCheckBox ch01 = new JCheckBox("남자");

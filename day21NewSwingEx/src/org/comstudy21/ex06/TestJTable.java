@@ -17,6 +17,8 @@ import static org.comstudy21.ex06.R.txtFld1;
 import static org.comstudy21.ex06.R.txtFld2;
 import static org.comstudy21.ex06.R.txtFld3;
 import static org.comstudy21.ex06.R.txtFld4;
+import static org.comstudy21.ex06.R.rb01; // ----> 라디오 버튼 만든 거 회원
+import static org.comstudy21.ex06.R.rb02; // ----> 라디오 버튼 만든 거 비회원
 
 import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
@@ -113,6 +115,7 @@ public class TestJTable extends MyJframe {
 				String name = (String) tbModel.getValueAt(row, 1);
 				String email = (String) tbModel.getValueAt(row, 2);
 				String phone = (String) tbModel.getValueAt(row, 3);
+				String member = (String) tbModel.getValueAt(row, 4);
 				// 확인하기
 //				System.out.println(idx+", "+name+", "+email+", "+phone);
 				// 찾아 온 데이터 적용하기
@@ -120,6 +123,8 @@ public class TestJTable extends MyJframe {
 				txtFld2.setText(name);
 				txtFld3.setText(email);
 				txtFld4.setText(phone);
+				rb01.setText(member);
+				
 
 			}
 
@@ -154,6 +159,8 @@ public class TestJTable extends MyJframe {
 				txtFld3.setText("");
 				String phone = txtFld4.getText();
 				txtFld4.setText("");
+				System.out.println(rb01.getName()); 
+				//============================================================수정해야함
 				// 되는지 test
 //				System.out.println("name => "+name);
 //				System.out.println("email => "+email);
@@ -161,7 +168,7 @@ public class TestJTable extends MyJframe {
 
 				// TableModel 에 반영해주기
 				// dao에 저장 후
-				dao.insert(new SaramDto(0, name, email, phone, member));
+//				dao.insert(new SaramDto(0, name, email, phone));
 				// list를 다시 그려준다.
 				displayList();
 //				tbModel.addRow(new Object[] { sequence++, name, email, phone });
@@ -178,7 +185,7 @@ public class TestJTable extends MyJframe {
 //				tbModel.addRow(vector);
 				
 				String name = txtFld2.getText();
-				Vector<Vector> saramList = dao.selectList(new SaramDto(0, name, null, null));
+				Vector<Vector> saramList = dao.selectList(new SaramDto(0, name, null, null, null));
 				tbModel.setDataVector(null, columnNames);
 				for (Vector vector : saramList) {
 					tbModel.addRow(vector);
@@ -194,7 +201,8 @@ public class TestJTable extends MyJframe {
 				String name = txtFld2.getText();
 				String email = txtFld3.getText();
 				String phone = txtFld4.getText();
-				Vector vector = dao.modify(new SaramDto(idx, name, email, phone));
+				String member = rb01.getText(); // =============================================================수정해야함
+				Vector vector = dao.modify(new SaramDto(idx, name, email, phone, member));
 //				tbModel.setDataVector(null, columnNames);
 //				tbModel.addRow(vector);
 				displayList();
@@ -209,7 +217,8 @@ public class TestJTable extends MyJframe {
 				String name = txtFld2.getText();
 				String email = txtFld3.getText();
 				String phone = txtFld4.getText();
-				Vector vector = dao.delete(new SaramDto(idx, name, email, phone));
+				String member = rb01.getText(); // =============================================================수정해야함
+				Vector vector = dao.delete(new SaramDto(idx, name, email, phone, member));
 //				tbModel.setDataVector(null, columnNames);
 //				tbModel.addRow(vector);
 				displayList();

@@ -32,10 +32,10 @@ public class LeftPane extends JPanel {
 		rowPan4.add(txtFld4);
 		
 		// 라디오 박스 판넬
-		rbbox.add(rb01);
+		rbbox.add(rb01); // 먼저 ButtonGroup에 라이디오 버튼 추가
 		rbbox.add(rb02);
 
-		JPanel rowPan5 = new JPanel();
+		JPanel rowPan5 = new JPanel(); //라디오 버튼을 판넬에 추가
 		rowPan5.add(rb01);
 		rowPan5.add(rb02);
 		

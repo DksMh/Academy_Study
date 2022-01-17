@@ -24,7 +24,7 @@ public class SaramDao {
 		Vector vector = new Vector();
 		for (int i = 0; i < saramList.size(); i++) {
 			if(saramDto.getName().equals(saramList.get(i).getName())) {				
-				vector.add(saramList.get(i).toVector()); // toVector -> 데이터를 Vector로 넘겨주는 거 만듬
+				vector.add(saramList.get(i).toVector());
 			}
 		}
 		return vector;
