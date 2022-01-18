@@ -19,7 +19,9 @@ public class ClientEx02 {
 
 		try {
 //			socket = new Socket("localhost", 9999); // 클라이언트 소켓 생성. 서버에 연결
-			socket = new Socket(InetAddress.getLocalHost(), 9999); 
+			socket = new Socket(InetAddress.getLocalHost(), 9999);  
+			// InetAddress 클래스 : 자바에서 IP 주소를 표현할때 사용하는 클래스
+			// getLocalHost() 메서드 : 로컬 호스트의 InetAddress객체를 반환한다.
 			in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
 			out = new BufferedWriter(new OutputStreamWriter(socket.getOutputStream()));
 			while (true) {
@@ -36,7 +38,7 @@ public class ClientEx02 {
 				System.out.println("서버: " + inputMessage);
 			}
 		} catch (IOException e) {
-			System.out.println(e.getMessage());
+			System.out.println(e.getMessage()); // e.getMessage() : 에러의 원인을 간단하게 출력합니다.
 		} finally {
 			try {
 				sc.close();
