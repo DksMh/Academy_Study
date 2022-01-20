@@ -134,7 +134,7 @@ public class ServerEx extends Thread {
 						break;
 					}
 					if (clientMessage.indexOf(".to")==0) { // /to --> 귓속말기능 (sendmsg)
-						sendmsg(clientMessage); // -> 오류남
+						sendmsg(clientMessage); 
 					}else {
 						System.out.println(userId + ">>> " + clientMessage);
 						broadcast(userId + ">>> " + clientMessage);
@@ -151,47 +151,20 @@ public class ServerEx extends Thread {
 			}
 		}
 		public void sendmsg(String msg) {
-			// 형태 : 유저03이 유저 01에게 메세지를 보낸다.
-			// 그 메세지는 .to 유저01 문자 형태이다.
-			// 띄어쓰기를 한다. 띄어쓰기를 나눠줘야한다.
-			// 위에서 hashmap을 선언했다. HashMap<String, User> userMap = new HashMap<String, User>();
-			// -> 사용하면 편할 거같은데..
-			// broadcast에서 User user = userMap.get(key); 사용했다. 비슷하게 사용...?
 			PrintWriter pw = null;
 			int start = msg.indexOf(" ") + 1;
 			int end = msg.indexOf(" ", start);
 			if (end != -1) {
 				String to = msg.substring(start, end);
 				String msg2 = msg.substring(end + 1);
-				Object obj = userMap.get(to).pw; // -> .pw 붙인 걸로 수정했는데 왜...이게 이렇게 붙어야 돌아가는데..?
+				Object obj = userMap.get(to).pw; // -> .pw (이전 메모프로그램 .getName으로 idx불러온 개념
 				if (obj != null) {
-					pw = (PrintWriter) obj; // --> 오류남
-					pw.println(userId+"님이 다음의 귓속말을 보내셨습니다. : " + msg2);
+					pw = (PrintWriter) obj;
+					pw.println(to + "님이 다음의 귓속말을 보내셨습니다. : " + msg2);
 					pw.flush();
+					
 				}
 			}
 		}
-//		@Override
-//		public void run() {
-//			while(true && in!=null) {
-//				try {
-//					String clientMessage = in.readLine();
-//					if(".quit".equalsIgnoreCase(clientMessage)) {
-//						System.out.println(".quit가 입력되어서 끝낸다!");
-//						break;
-//					}
-//					System.out.println(userId + ">>> " + clientMessage);
-//					broadcast(userId + ">>> " + clientMessage);
-//					try {
-//						Thread.sleep(100);
-//					} catch (InterruptedException e) {
-//						e.printStackTrace();
-//					}
-//				} catch (IOException e) {
-//					e.printStackTrace();
-//				}
-//				
-//			}
-//		}
 	} // end of ReceiveThread
 }
