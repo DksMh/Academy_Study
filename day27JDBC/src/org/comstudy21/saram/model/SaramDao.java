@@ -20,8 +20,7 @@ public class SaramDao {
 	public static final String SQL_SELECT_NAME = "SELECT * FROM SARAM WHERE NAME=?";
 
 	public static Statement stmt = null; // 쿼리문을 담아 실행하는 것, JUST 전달
-	public static PreparedStatement pstmt = null; // 준비된 Statement. Statement 클래스의 기능 향상, 인자와 관련된 작업이 특화(매개변수), 텍스트 SQL
-													// 호출
+	public static PreparedStatement pstmt = null; // 준비된 Statement. Statement 클래스의 기능 향상, 인자와 관련된 작업이 특화(매개변수), 텍스트 SQL 호출
 	public static ResultSet rs = null; // 쿼리문을 보여주는 것
 	public static Connection conn = null;
 
