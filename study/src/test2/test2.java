@@ -9,11 +9,10 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 class Airplan extends JPanel { // 판넬을 만들고 라벨에 비행기 이미지를 붙이기
-	public JLabel imgLbl; // JPanel에서 라벨에 붙여넣을 거임.
-	int x; // x좌표 위치
-	int y; // y좌표 위치
 	Image img;
 	String imagePath = "F:\\java_work\\study\\src\\test2\\airplan01.png"; // 이미지 위치 찾고
+	public int x, y; // x, y 좌표
+	public JLabel imgLbl; // JPanel에서 라벨에 붙여넣을 거임.
 
 	public Airplan() { // 생성자를 만듬
 		ImageIcon imgIcon = new ImageIcon(imagePath); // 아이콘으로 위치찾은 거 넣어주고
@@ -22,41 +21,42 @@ class Airplan extends JPanel { // 판넬을 만들고 라벨에 비행기 이미
 		imgIcon = new ImageIcon(newImg);
 		imgLbl = new JLabel(imgIcon); // 라벨에 이미지 넣어줌
 		this.add(imgLbl); // Airplan이라는 판넬에 이미지 넣은 라벨 넣어줌
-		this.setBounds(150, 200, 100, 100); // 처음 위치 좌표 
+		this.setBounds(150, 200, 100, 100); // 처음 위치 좌표
 	}
 }
 
-class Airplan02 extends JPanel implements Runnable { // 이미지를 움직이게 만들고 싶어 extend를 못하니까 Runnable
-	public JLabel imgLbl2; // JPanel에서 라벨에 붙여넣을 거임.
-	int x; // x좌표 위치
-	int y; // y좌표 위치
+class Airplan02 extends JPanel implements Runnable { // 자성 이미지를 움직이게 만들고 싶어 extend를 못하니까 Runnable
+	String imagePath = "F:\\java_work\\study\\src\\test2\\airplan02.png";
 	Image img;
-	String imagePath = "F:\\java_work\\study\\src\\test2\\airplan02.png"; 
+	public JLabel imgLbl2; // JPanel에서 라벨에 붙여넣을 거임.
+	int x, y; // y좌표 위치
 
-	public Airplan02() { 
-		ImageIcon imgIcon = new ImageIcon(imagePath); 
-		img = imgIcon.getImage(); 
+	public Airplan02() {
+		ImageIcon imgIcon = new ImageIcon(imagePath);
+		img = imgIcon.getImage();
 		Image newImg = img.getScaledInstance(100, 100, Image.SCALE_SMOOTH);
 		imgIcon = new ImageIcon(newImg);
-		imgLbl2 = new JLabel(imgIcon); 
-		this.add(imgLbl2); 
-		this.setBounds(400, -100, 100, 100); // 처음 위치 좌표 
+		imgLbl2 = new JLabel(imgIcon);
+		this.add(imgLbl2);
+		this.setBounds(300, -100, 100, 100); // 처음 위치 좌표
 	}
 
-	@Override
 	public void run() { // start하면 달릴 부분이야.
 		while (true) { // 계속 보여주게 만들고 싶어서 반복 사용
-			y += 10; // 10px 더할 꺼야.
-			if (y >= 600) { // 600이 넘어가면
-				y = -100; // 다시 -100 부터 다시보여
-				this.setVisible(true);
+
+			this.y += 10; // 10px 더할 꺼야.
+			if (this.y >= 600) { // 600이 넘어가면
+				this.y = -100; // 다시 -100 부터 다시보여
+				this.setBounds(300, this.y, 100, 100);
 			}
+
 		}
 	}
+
 }
 
 class AiplanStarterThread extends Thread { // 스타트 부분 만들어줄 쓰레드
-	Airplan02 airplan02; 
+	Airplan02 airplan02;
 
 	public AiplanStarterThread(Airplan02 airplan02) {
 		this.airplan02 = airplan02;
@@ -64,8 +64,20 @@ class AiplanStarterThread extends Thread { // 스타트 부분 만들어줄 쓰�
 
 	@Override
 	public void run() {
-		Thread th = new Thread(airplan02);
-		th.start();
+		while (true) {
+			try {
+
+				Thread.sleep(500);
+
+				airplan02.y += 10; // 10px 더할 꺼야.
+				if (airplan02.y >= 600) { // 600이 넘어가면
+					airplan02.y = -100; // 다시 -100 부터 다시보여
+				}
+				airplan02.setBounds(300, airplan02.y, 100, 100);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+		}
 	}
 }
 
@@ -79,11 +91,11 @@ class MyContentPan extends JPanel { // 컨테이너 위에 붙이는 판넬 만�
 		this.add(airplan01); // 비행기를 넣어준다.
 		this.add(airplan02);
 
-		airplan01.setBounds(100, 100, 100, 100); // 위치를 변경해준다. == (x, y, w, h)
-		airplan02.setBounds(300, 300, 100, 100);
+		airplan02.setBounds(100, 100, 100, 100); // 위치를 변경해준다. == (x, y, w, h)
 
-		AiplanStarterThread starter = new AiplanStarterThread(airplan02); //
-		starter.start();
+		// start
+		AiplanStarterThread aaa = new AiplanStarterThread(airplan02);
+		aaa.start();
 	}
 }
 
