@@ -167,8 +167,8 @@ public class Ch03Ex22 {
 		
 		// 선생님과 함께 C))
 		final int MAX = 6;
-		int[] lotto = new int[MAX];
-		int[] balls = new int[45];
+		int[] lotto = new int[MAX]; // => size
+		int[] balls = new int[45]; // -> 우리한테 공은 3개
 		for(int i=1; i<=45; i++) {
 			balls[i-1] = i;
 		}
